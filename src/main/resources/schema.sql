@@ -8,4 +8,5 @@ CREATE TABLE users (
     peso DECIMAL(5,2),
     nivel_actividad TINYINT CHECK (nivel_actividad IN (0, 1, 2)),
     objetivo TINYINT CHECK (objetivo in (0, 1, 2))
+    img_path varchar(255)
 );
