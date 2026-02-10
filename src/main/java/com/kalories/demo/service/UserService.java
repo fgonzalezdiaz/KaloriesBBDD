@@ -30,6 +30,7 @@ public class UserService {
         List<User> users = userRepository.findById(id);
         if (users.isEmpty()) {
             CustomLogging.error("L'usuari amb id = " + id + " no existeix", "UserSerice", "findOne");
+            return null;
         }
         return users.get(0);
     }

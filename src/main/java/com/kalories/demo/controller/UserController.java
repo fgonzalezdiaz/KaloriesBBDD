@@ -23,12 +23,12 @@ public class UserController {
     UserService userService;
     
 
-    @PostMapping("/users/upload/csv")
+    @PostMapping("/upload/csv")
     public String uploadCsvUsers(@RequestParam("file") MultipartFile file) throws Exception{
         return userService.uploadCsvUsers(file);
     }
 
-    @PostMapping("/users/create")
+    @PostMapping("/create")
     public ResponseEntity<String> createUser(@RequestBody User user)throws Exception{
         if(userService.createUser(user) == 1){
             return ResponseEntity.ok("User created successfully");
@@ -37,12 +37,12 @@ public class UserController {
         }
     }
 
-    @GetMapping("/users/findAll")
+    @GetMapping("/findAll")
     public ResponseEntity<List<User>> findAll(){
         return ResponseEntity.ok(userService.findAll());
     }
 
-    @GetMapping("/users/findOne/{id}")
+    @GetMapping("/findOne/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id){
         return ResponseEntity.ok(userService.findById(id));
     }

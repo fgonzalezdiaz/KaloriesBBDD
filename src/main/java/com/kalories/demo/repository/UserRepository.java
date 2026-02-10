@@ -60,7 +60,7 @@ public class UserRepository {
 
     // Read por id
     public List<User> findById(Long id) {
-        String sql = "Select * from users where id == ?";
+        String sql = "Select * from users where id = ?";
         return jdbcTemplate.query(sql, new UserRowMapper(), id);
     }
 

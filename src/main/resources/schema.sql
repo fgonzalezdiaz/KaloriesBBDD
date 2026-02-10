@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE if not exists users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     contrasena VARCHAR(255) NOT NULL,
@@ -7,6 +7,6 @@ CREATE TABLE users (
     altura INT,
     peso DECIMAL(5,2),
     nivel_actividad TINYINT CHECK (nivel_actividad IN (0, 1, 2)),
-    objetivo TINYINT CHECK (objetivo in (0, 1, 2))
+    objetivo TINYINT CHECK (objetivo in (0, 1, 2)),
     img_path varchar(255)
 );
