@@ -1,0 +1,13 @@
+[2026-02-10 19:26:46.631] INFO - UserService - findAll - Consultant tots els users
+[2026-02-10 19:27:54.484] INFO - UserService - findAll - Consultant tots els users
+[2026-02-10 19:31:07.214] ERROR - UserService - uploadCsvUsers - Error al importar els usuaris
+[2026-02-10 19:31:35.932] ERROR - UserService - uploadCsvUsers - Error al importar els usuaris
+[2026-02-10 19:38:02.554] ERROR - UserService - uploadCsvUsers - Error al importar els usuaris
+[2026-02-10 19:41:05.133] ERROR - UserService - uploadCsvUsers - Error al importar els usuaris: PreparedStatementCallback; bad SQL grammar [INSERT INTO USERS (EMAIL, CONTRASENA, GENERO, FECHA_NACIMIENTO, ALTURA, PESO, NIVEL_ACTIVIDAD, OBJETIVO, IMG_PATH) VALUES (?,?,?,?,?,?,?,?,?)]
+[2026-02-10 19:41:10.9] ERROR - UserService - uploadCsvUsers - Error al importar els usuaris: PreparedStatementCallback; bad SQL grammar [INSERT INTO USERS (EMAIL, CONTRASENA, GENERO, FECHA_NACIMIENTO, ALTURA, PESO, NIVEL_ACTIVIDAD, OBJETIVO, IMG_PATH) VALUES (?,?,?,?,?,?,?,?,?)]
+[2026-02-10 19:46:01.271] INFO - UserService - createUser - Creant user
+[2026-02-10 19:47:54.58] INFO - UserService - createUser - Creant user
+[2026-02-10 19:49:26.017] INFO - UserService - createUser - Creant user
+[2026-02-10 19:49:56.543] INFO - UserService - uploadCsvUsers - S'han creat 10 usuaris
+[2026-02-10 19:51:48.224] INFO - UserService - findAll - Consultant tots els users
+[2026-02-10 19:52:03.967] INFO - UserService - findById - Consultant user per id

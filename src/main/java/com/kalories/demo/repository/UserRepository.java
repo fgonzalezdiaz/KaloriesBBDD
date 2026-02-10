@@ -46,13 +46,13 @@ public class UserRepository {
     // Crear un usuario
     public int save(String email, String contrasena, String genero, LocalDate fechaNacimiento, Integer altura,
             BigDecimal peso, Integer nivelActividad, Integer objetivo, String imgPath) {
-        String sql = "INSERT INTO USERS (EMAIL, CONTRASENA, GENERO, FECHA_NACIMIENTO, ALTURA, PESO, NIVEL_ACTIVIDAD, OBJETIVO, IMG_PATH) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO users (EMAIL, CONTRASENA, GENERO, FECHA_NACIMIENTO, ALTURA, PESO, NIVEL_ACTIVIDAD, OBJETIVO, IMG_PATH) VALUES (?,?,?,?,?,?,?,?,?)";
         return jdbcTemplate.update(sql, email, contrasena, genero, fechaNacimiento, altura, peso, nivelActividad,
                 objetivo, imgPath);
     }
 
     public int save(User user) {
-        String sql = "INSERT INTO USERS (EMAIL, CONTRASENA, GENERO, FECHA_NACIMIENTO, ALTURA, PESO, NIVEL_ACTIVIDAD, OBJETIVO, IMG_PATH) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO users (EMAIL, CONTRASENA, GENERO, FECHA_NACIMIENTO, ALTURA, PESO, NIVEL_ACTIVIDAD, OBJETIVO, IMG_PATH) VALUES (?,?,?,?,?,?,?,?,?)";
         return jdbcTemplate.update(sql, user.getEmail(), user.getContrasena(), user.getGenero(),
                 user.getFechaNacimiento(), user.getAltura(), user.getPeso(), user.getNivelActividad(),
                 user.getObjetivo(), user.getImgPath());

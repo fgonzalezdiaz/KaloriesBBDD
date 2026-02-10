@@ -35,27 +35,30 @@ public class UserService {
         return users.get(0);
     }
 
-    public int createUser(User user) throws Exception{
+    public int createUser(User user) throws Exception {
         CustomLogging.info("Creant user", "UserService", "createUser");
         return userRepository.save(user);
     }
 
-    public String uploadCsvUsers(MultipartFile csvFile) throws Exception{
+    public String uploadCsvUsers(MultipartFile csvFile) throws Exception {
         int usersCreats = 0;
-        try{
+        try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(csvFile.getInputStream()));
             String line;
-            while((line = bufferedReader.readLine()) != null){
+            while ((line = bufferedReader.readLine()) != null) {
                 String[] arguments = line.split(",");
                 // Cambiar el formato de las entradas arguments
 
-                usersCreats += userRepository.save(new User(Long.parseLong(arguments[0]), arguments[1], arguments[2], arguments[3], LocalDate.parse(arguments[4]), Integer.parseInt(arguments[5]), BigDecimal.valueOf(Long.parseLong(arguments[6])), Integer.parseInt(arguments[7]), Integer.parseInt(arguments[8]), arguments[9]));
+                usersCreats += userRepository.save(new User(Long.parseLong(arguments[0]), arguments[1], arguments[2],
+                        arguments[3], LocalDate.parse(arguments[4]), Integer.parseInt(arguments[5]),
+                        BigDecimal.valueOf(Long.parseLong(arguments[6])), Integer.parseInt(arguments[7]),
+                        Integer.parseInt(arguments[8]), arguments[9]));
             }
             CustomLogging.info("S'han creat " + usersCreats + " usuaris", "UserService", "uploadCsvUsers");
             return "S'han creat " + usersCreats + " usuaris";
-        } catch (Exception e){
-            CustomLogging.error("Error al importar els usuaris", "UserService", "uploadCsvUsers");
-            return "Error al importar els usuaris";
+        } catch (Exception e) {
+            CustomLogging.error("Error al importar els usuaris: " + e.getMessage(), "UserService", "uploadCsvUsers");
+            return "Error al importar els usuaris: " + e.getMessage();
         }
     }
 }

@@ -1,4 +1,5 @@
-CREATE TABLE if not exists users (
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     contrasena VARCHAR(255) NOT NULL,
