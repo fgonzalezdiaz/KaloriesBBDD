@@ -1,6 +1,7 @@
 package com.kalories.demo.service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -59,6 +60,58 @@ public class UserService {
         } catch (Exception e) {
             CustomLogging.error("Error al importar els usuaris: " + e.getMessage(), "UserService", "uploadCsvUsers");
             return "Error al importar els usuaris: " + e.getMessage();
+        }
+    }
+
+    // Parte Osama //
+    public void uploadImage(long id, MultipartFile file) throws Exception {
+        File uploadsDir = new File("uploads");
+        if (!uploadsDir.exists())
+            uploadsDir.mkdir();
+
+        String filePath = "uploads/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        file.transferTo(new File(filePath));
+        CustomLogging.info("Imagen subida correctamente", "UserService", "uploadImage");
+
+        userRepository.addImagePath(id, filePath);
+    }
+
+    // Actualizar usuario
+    public boolean updateUser(long id, String email, String contrasena) {
+        int updated = userRepository.updateUser(id, email, contrasena);
+        if (updated == 1) {
+            CustomLogging.info("Usuario actualizado correctamente", "UserService", "updateUser");
+            return true;
+        } else {
+            CustomLogging.warning("Intento de actualización de usuario con id " + id + " que no existe", "UserService",
+                    "updateUser");
+            return false;
+        }
+    }
+
+    // Borrar todos los usuarios
+    public int deleteAllUsers() {
+
+        int deleted = userRepository.deleteAll();
+        if (deleted > 0) {
+            CustomLogging.info("Todos los usuarios eliminados", "UserService", "deleteAllUsers");
+        } else {
+            CustomLogging.error("No se han encontrado usuarios para eliminar", "UserService", "deleteAllUsers");
+        }
+        return deleted;
+    }
+
+    // Borrar usuario por id
+    public boolean deleteUserById(long id) {
+        int deleted = userRepository.deleteById(id);
+        if (deleted > 0) {
+            CustomLogging.info("Usuario con id " + id + " eliminado", "UserService", "deleteUserById");
+            return true;
+
+        } else {
+            CustomLogging.warning("Intento de eliminación de usuario con id " + id + " que no existe", "UserService",
+                    "deleteUserById");
+            return false;
         }
     }
 }

@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,5 +46,47 @@ public class UserController {
     @GetMapping("/findOne/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.findById(id));
+    }
+
+    // Part Osama ->
+    @PostMapping("/{id}/imagen")
+    public ResponseEntity<String> uploadImage(@PathVariable long id, @RequestParam("file") MultipartFile file) {
+        try {
+            userService.uploadImage(id, file);
+            return ResponseEntity.ok("Imagen subida correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error al subir la imagen");
+        }
+    }
+
+    // actualizar el usuario
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable long id,
+            @RequestParam String email,
+            @RequestParam String contrasena) {
+        boolean updated = userService.updateUser(id, email, contrasena);
+        if (updated) {
+            return ResponseEntity.ok("Usuario actualizado");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // c2 - borrar todos los usuarios
+    @DeleteMapping
+    public ResponseEntity<String> deleteAll() {
+        userService.deleteAllUsers();
+        return ResponseEntity.ok("Todos los usuarios eliminados");
+    }
+
+    // d2 - borrar usuario por id
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable long id) {
+        boolean deleted = userService.deleteUserById(id);
+        if (deleted) {
+            return ResponseEntity.ok("Usuario eliminado");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

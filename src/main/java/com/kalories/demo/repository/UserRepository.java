@@ -64,4 +64,27 @@ public class UserRepository {
         return jdbcTemplate.query(sql, new UserRowMapper(), id);
     }
 
+    //Parte Osama ->
+    // agregar ruta de imagen
+    public int addImagePath(long id, String path) {
+        String sql = "UPDATE users SET img_path = ? WHERE id = ?";
+        return jdbcTemplate.update(sql, path, id);
+    }
+
+    // update por id (email y contrasena)
+    public int updateUser(long id, String email, String contrasena) {
+        String sql = "UPDATE users SET email = ?, contrasena = ? WHERE id = ?";
+        return jdbcTemplate.update(sql, email, contrasena, id);
+    }
+
+    // delete all
+    public int deleteAll() {
+        return jdbcTemplate.update("DELETE FROM users");
+    }
+
+    // delete por id
+    public int deleteById(long id) {
+        return jdbcTemplate.update("DELETE FROM users WHERE id = ?", id);
+    }
+
 }
