@@ -21,16 +21,15 @@ import com.kalories.demo.service.UserService;
 public class UserController {
     @Autowired
     UserService userService;
-    
 
     @PostMapping("/upload/csv")
-    public String uploadCsvUsers(@RequestParam("file") MultipartFile file) throws Exception{
+    public String uploadCsvUsers(@RequestParam("file") MultipartFile file) throws Exception {
         return userService.uploadCsvUsers(file);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createUser(@RequestBody User user)throws Exception{
-        if(userService.createUser(user) == 1){
+    public ResponseEntity<String> createUser(@RequestBody User user) throws Exception {
+        if (userService.createUser(user) == 1) {
             return ResponseEntity.ok("User created successfully");
         } else {
             return ResponseEntity.badRequest().body("User not created");
@@ -38,12 +37,12 @@ public class UserController {
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(userService.findAll());
     }
 
     @GetMapping("/findOne/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id){
+    public ResponseEntity<User> findById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.findById(id));
     }
 }
