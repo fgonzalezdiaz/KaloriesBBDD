@@ -15,3 +15,6 @@ nohup java -jar demo-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
 
 Comprovar funcionamiento de los endpoints:
 curl http://localhost:8080/api/historial-peso/findAll
+
+Comando swagger
+http://158.101.112.242:8080/swagger-ui/index.html
