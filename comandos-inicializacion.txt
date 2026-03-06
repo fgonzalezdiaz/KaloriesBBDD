@@ -1,0 +1,17 @@
+CREAR .JAR
+ ./mvnw clean package   
+
+Subir archivo a la instancia:
+scp -i "C:\Users\Francisco\.ssh\ssh-key-2026-02-20.key" "C:\Users\Francisco\Desktop\ITIC BCN\DAM2\Acces a Dades\KaloriesBBDD\target\demo-0.0.1-SNAPSHOT.jar" ubuntu@158.101.112.242:/home/ubuntu/
+
+Conectarse a la instancia:
+ssh -i "C:\Users\Francisco\.ssh\ssh-key-2026-02-20.key" ubuntu@158.101.112.242
+
+Liberar puerto en caso de estar en uso:
+sudo fuser -k 8080/tcp
+
+Iniciar API en segundo plano:
+nohup java -jar demo-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
+
+Comprovar funcionamiento de los endpoints:
+curl http://localhost:8080/api/historial-peso/findAll

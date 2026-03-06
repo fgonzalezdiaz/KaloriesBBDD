@@ -14,5 +14,6 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS historial_pesos(
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     fecha VARCHAR(11),
-    peso INTEGER
+    peso INTEGER,
+    id_user BIGINT
 );

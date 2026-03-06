@@ -4,6 +4,7 @@ public class HistorialPeso {
     private Long id;
     private String fecha;
     private Integer peso;
+    private Long fk_user;
 
     public HistorialPeso() {
     }
@@ -14,13 +15,22 @@ public class HistorialPeso {
         this.peso = peso;
     }
 
-    public HistorialPeso(String fecha, Integer peso) {
+    public HistorialPeso(String fecha, Integer peso, Long fk_user) {
         this.fecha = fecha;
         this.peso = peso;
+        this.fk_user = fk_user;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public Long getFk_user() {
+        return fk_user;
+    }
+
+    public void setFk_user(Long fk_user) {
+        this.fk_user = fk_user;
     }
 
     public void setId(Long id) {

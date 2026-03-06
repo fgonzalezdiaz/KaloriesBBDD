@@ -33,4 +33,12 @@ public class HistorialPesoService {
     public int delete(HistorialPeso historialPeso) {
         return hpr.delete(historialPeso);
     }
+
+    public List<HistorialPeso> findByIdUser(Long id_user) {
+        return hpr.findByIdUser(id_user);
+    }
+
+    public List<HistorialPeso> findByIdUserAndWeight(Long id_user, int peso) {
+        return hpr.findByIdUserAndWeight(id_user, peso);
+    }
 }

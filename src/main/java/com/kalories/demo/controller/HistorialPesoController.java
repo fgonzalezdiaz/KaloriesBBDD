@@ -37,13 +37,23 @@ public class HistorialPesoController {
     }
 
     @PostMapping("/create")
-    public int create(@RequestParam String fecha, @RequestParam int peso) {
-        return hps.save(new HistorialPeso(fecha, peso));
+    public int create(@RequestParam String fecha, @RequestParam int peso, Long id_user) {
+        return hps.save(new HistorialPeso(fecha, peso, id_user));
     }
 
     @DeleteMapping("/delete")
     public int delete(@RequestBody HistorialPeso hp) {
         return hps.delete(hp);
+    }
+
+    @GetMapping("/findByIdUser")
+    public List<HistorialPeso> getMethodName(@RequestParam Long param) {
+        return hps.findByIdUser(param);
+    }
+
+    @GetMapping("/findByUserAndWeight")
+    public List<HistorialPeso> getMethodName(@RequestParam Long id_user, @RequestParam int peso) {
+        return hps.findByIdUserAndWeight(id_user, peso);
     }
 
 }

@@ -20,10 +20,12 @@ public class HistorialPesoRepository {
 
         @Override
         public HistorialPeso mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new HistorialPeso(
+            HistorialPeso hp = new HistorialPeso(
                     rs.getLong("id"),
                     rs.getString("fecha"),
                     rs.getInt("peso"));
+            hp.setFk_user(rs.getLong("id_user"));
+            return hp;
         }
     }
 
@@ -43,12 +45,22 @@ public class HistorialPesoRepository {
     }
 
     public int save(HistorialPeso historialPeso) {
-        String sql = "INSERT INTO historial_pesos (FECHA, PESO) VALUES (?, ?)";
-        return jdbcTemplate.update(sql, historialPeso.getFecha(), historialPeso.getPeso());
+        String sql = "INSERT INTO historial_pesos (FECHA, PESO, ID_USER) VALUES (?, ?, ?)";
+        return jdbcTemplate.update(sql, historialPeso.getFecha(), historialPeso.getPeso(), historialPeso.getFk_user());
     }
 
     public int delete(HistorialPeso historialPeso) {
         String sql = "DELETE FROM historial_pesos WHERE FECHA = ? AND PESO = ?";
         return jdbcTemplate.update(sql, historialPeso.getFecha(), historialPeso.getPeso());
+    }
+
+    public List<HistorialPeso> findByIdUser(Long id_user) {
+        String sql = "SELECT * FROM historial_pesos WHERE id_user = ?";
+        return jdbcTemplate.query(sql, new HistorialPesoRowMapper(), id_user);
+    }
+
+    public List<HistorialPeso> findByIdUserAndWeight(Long id_user, int peso) {
+        String sql = "SELECT * FROM historial_pesos WHERE id_user = ? AND peso = ?";
+        return jdbcTemplate.query(sql, new HistorialPesoRowMapper(), id_user, peso);
     }
 }
